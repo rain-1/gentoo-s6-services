@@ -1,2 +1,4 @@
+s6-envdir /s6/scripts/env-stage2
+importas HOSTNAME HOSTNAME
 if { s6-echo "init-stage2 starting." }
-s6-hostname gentoo
+s6-hostname ${HOSTNAME}
