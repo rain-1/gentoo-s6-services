@@ -1,0 +1,14 @@
+#!/bin/execlineb -P
+s6-envdir /s6/scripts/env-stage2
+importas URANDOM_SEED URANDOM_SEED
+if { s6-echo "Initializing random number generator" }
+foreground {
+	redirfd -w 1 /dev/urandom
+	cat ${URANDOM_SEED}
+}
+if { rm -f ${URANDOM_SEED} }
+foreground {
+	umask 077
+	redirfd -w 2 /dev/null
+	dd if=/dev/urandom of=${URANDOM_SEED} count=1
+}
