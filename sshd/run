@@ -2,4 +2,4 @@
 foreground { s6-mkdir -p -m 750 /var/run/sshd }
 fdmove -c 2 1
 if { /usr/sbin/sshd -t }
-/usr/sbin/sshd -D -E /tmp/sshdlog.txt
+/usr/sbin/sshd -D
